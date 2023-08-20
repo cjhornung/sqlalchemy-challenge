@@ -137,7 +137,7 @@ def startendjson(start,end):
     """Returns a JSON list of the minimum temperature, the average temperature, and the maximum temperature for a specified start-end range (format: [yyyy-mm-dd])"""
     start_date= dt.datetime.strptime(start,'%Y-%m-%d')
     end_date= dt.datetime.strptime(end,'%Y-%m-%d')
-    results=session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).filter(Measurement.date >= start_date,Measurement.date <= end_date).all()
+    results=session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
     data_dict = {}
     data_dict["min"] = results[0][0]
     data_dict["max"] = results[0][1]
